@@ -61,3 +61,9 @@ Searching
 You can search for Tasks by appending a query parameter to the GET /api/tasks endpoint:
 
 ?search=query: Search Tasks by title containing 'query'.
+
+#Implement Scheduler for permanent deletion of soft-deleted tasks
+Run the Scheduler
+* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
+
+
