@@ -1,70 +1,63 @@
-<<<<<<< HEAD
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# To-Do List Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This is a To-Do List application built using Laravel. The API allows users to manage tasks and sub-tasks.
 
-## About Laravel
+## Functional Requirements
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Users can create a Task or Subtask.
+- Users can delete a Task (Soft Delete).
+- Users can mark a Task as Complete.
+- If the main Task is marked as completed, all related Subtasks are marked as completed.
+- Users can view the list of all pending Tasks and Subtasks, sorted by `due-date` (ascending).
+- Users can filter Tasks based on `due-date`: Today, This Week, Next Week, Overdue.
+- Users can search Tasks based on `title`.
+- Scheduler: Tasks that have been soft-deleted for more than a month are permanently deleted.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Task Properties
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- A Task has a `title` and `due-date`.
+- There are only two states applicable for a Task: Pending or Completed.
+- Tasks can have related Subtasks.
 
-## Learning Laravel
+## Installation
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Clone the repository:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+git clone https://github.com/your-username/your-repository.git
+cd your-repository
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. Set up the environment:
 
-## Laravel Sponsors
+//Configure your database credentials in the .env file.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+2. Run database migrations and seeders:
 
-### Premium Partners
+php artisan migrate --seed
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+3. Serve the application:
 
-## Contributing
+php artisan serve
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+The application should now be running at http://localhost:8000.
 
-## Code of Conduct
+API Endpoints
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+GET /api/tasks: Get all pending Tasks and their Subtasks.
 
-## Security Vulnerabilities
+POST /api/tasks: Create a new Task or Subtask.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+PUT /api/tasks/{task}/complete: Mark a Task as Complete.
 
-## License
+DELETE /api/tasks/{task}: Delete a Task (Soft Delete).
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-=======
-# To-Do-App
->>>>>>> 5338c00fae91035412f5282d468057e9c064f726
+Filtering
+You can filter Tasks by appending a query parameter to the GET /api/tasks endpoint:
+
+?filter=today: Tasks due today.
+?filter=this_week: Tasks due this week.
+?filter=next_week: Tasks due next week.
+?filter=overdue: Overdue tasks.
+Searching
+You can search for Tasks by appending a query parameter to the GET /api/tasks endpoint:
+
+?search=query: Search Tasks by title containing 'query'.
